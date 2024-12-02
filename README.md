@@ -19,7 +19,7 @@ Follow these steps to set up the project on your local machine:
 1. Clone the repository:
 
    ```
-   git clone https://github.com/sibi24sibi/Ten-fashion.git
+   git clone https://github.com/parthkaul-bit/Ten-fashion.git
    ```
 
 2. Navigate to the project directory:
