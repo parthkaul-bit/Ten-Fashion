@@ -8,6 +8,7 @@ const Wishlist = () => {
   const { currentUser } = useUserContext();
   const [wishlistItems, setWishlistItems] = useState([]);
   const [error, setError] = useState(null);
+  console.log(wishlistItems)
 
   useEffect(() => {
     const getWishlist = async () => {

@@ -5,7 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import { handleAddToCart } from "../../../utils/utils";
 import { ProductCard } from "../ProductCard";
 import { useUserContext } from "../../context/useContext";
-import { addToWishlist, removeFromWishlist } from "../../../utils/wishlist";
+import { addToWishlist, removeFromWishlist, fetchWishlist } from "../../../utils/wishlist";
 
 function ProductDetails() {
   const [isHeartFilled, setIsHeartFilled] = useState(false);
@@ -23,6 +23,23 @@ function ProductDetails() {
   console.log(data[0]);
 
   const { id } = useParams();
+
+  useEffect(() => {
+    const checkWishlist = async () => {
+      if (currentUser?._id) {
+        try {
+          const wishlist = await fetchWishlist(currentUser._id)
+          const IsProductInWishList = wishlist.some(item => item._id === prodId);
+          setIsInWishlist(IsProductInWishList)
+        } catch (error) {
+          console.error("failed to fecth wishlist:",error)
+        }
+      }
+    };
+
+    checkWishlist();
+
+  },[currentUser, prodId])
 
   useEffect(() => {
     if (id) {
@@ -162,9 +179,45 @@ function ProductDetails() {
                 +
               </button>
             </div>
-
             <button
-              className={`w-full py-3 rounded-lg transition flex items-center justify-center gap-2 ${
+              className="w-[70%] flex justify-center bg-black text-white font-bold border border-black py-3 rounded-3xl hover:bg-white hover:text-black max-md:w-[100%]"
+              onClick={() =>
+                handleAddToCart(
+                  data[0]?._id,
+                  quantity,
+                  data[0]?.productTitle,
+                  data[0]?.price,
+                  data[0]?.images
+                )
+              }
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6 mr-2"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M3 3h2l.4 2M7 13h10l1.1-6H6.5m-3.5 6L4 3m4.5 10L5 21h14l1.5-8m-13.5 8h10"
+                />
+              </svg>
+              Add to basket
+            </button>
+          </div>
+
+          <Link to="/cart">
+            <button onClick={() => handleAddToCart(data[0]?._id, quantity, data[0]?.productTitle, data[0]?.price, data[0]?.images)} className="w-[100%] ml-2 mt-10 py-3 font-bold border border-black rounded-3xl hover:bg-black hover:text-white max-md:mt-5">
+              Buy it now
+            </button>
+          </Link>
+
+          <div className="mt-10 ml-3 flex items-center max-md:mt-5 max-md:flex-col max-md:items-start">
+          <button
+              className={`w-full py-3 rounded-lg transition flex items-center gap-2 ${
                 loading ? "opacity-50 cursor-not-allowed" : ""
               }`}
               onClick={handleWishlistToggle}
@@ -198,45 +251,6 @@ function ProductDetails() {
                 </>
               )}
             </button>
-          </div>
-
-          <Link to="/cart">
-            <button className="w-[100%] ml-2 mt-10 py-2 font-bold border border-black rounded-3xl hover:bg-black hover:text-white max-md:mt-5">
-              Buy it now
-            </button>
-          </Link>
-
-          <div className="mt-10 ml-3 flex items-center max-md:mt-5 max-md:flex-col max-md:items-start">
-            {/* <h1
-              className="flex items-center cursor-pointer hover:text-blue-500"
-              onClick={toggleHeart}
-            >
-              {isHeartFilled ? (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6 mr-2 text-black"
-                  fill="red"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                </svg>
-              ) : (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6 mr-2 text-black"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                >
-                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                </svg>
-              )}
-              Add to wishlist
-            </h1> */}
-            {/* <h1 className="pl-12 flex items-center cursor-pointer hover:text-blue-500 max-md:pl-0">
-              Add to compare
-            </h1> */}
           </div>
 
           {/* <div className="w-[10%] mt-10 flex gap-4">
