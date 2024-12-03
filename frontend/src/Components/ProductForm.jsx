@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 // Star Rating Component
 const StarRating = ({ rating, onChange }) => {
@@ -97,6 +98,7 @@ export const ProductForm = () => {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -134,7 +136,7 @@ export const ProductForm = () => {
         }
       );
       console.log("Product added:", response.data);
-
+      navigate("/admin/products");
       setFormData(initialState);
     } catch (error) {
       console.error("Error submitting form:", error);

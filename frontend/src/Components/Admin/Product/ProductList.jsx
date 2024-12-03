@@ -8,26 +8,27 @@ const ProductList = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const fetchProducts = async () => {
+    try {
+      const response = await axios.get("http://localhost:8000/api/products");
+      setProducts(response.data);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await axios.get("http://localhost:8000/api/products");
-        setProducts(response.data);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
     fetchProducts();
   }, []);
 
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this product?")) {
       try {
-        // todo: connect backend
-        // await axios.delete(`http://localhost:8000/api/products/${id}`);
+        await axios.delete(`http://localhost:8000/api/product/${id}`);
         console.log(`Product with id: ${id} is deleted`);
+        fetchProducts();
       } catch (error) {
         console.error("Error deleting product:", error);
         alert("Failed to delete the product.");

@@ -87,7 +87,6 @@ const ProductEdit = () => {
       }));
     }
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -95,7 +94,6 @@ const ProductEdit = () => {
 
     try {
       const form = new FormData();
-
       form.append("productTitle", formData.productTitle);
       form.append("price", formData.price);
       form.append("productDescription", formData.productDescription);
@@ -107,18 +105,15 @@ const ProductEdit = () => {
         form.append("images", formData.image);
       }
 
-      // await axios.put(`http://localhost:8000/api/product/${id}`, form, {
-      //   headers: {
-      //     "Content-Type": "multipart/form-data",
-      //   },
-      // });
-      console.log(
-        `updated product details: of ${formData.productTitle} with id ${id}`
-      );
+      await axios.put(`http://localhost:8000/api/product/${id}`, form, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
       alert("Product updated successfully!");
       navigate("/admin/products");
     } catch (error) {
-      console.error("Error updating product:", error);
+      console.error("Error updating product:", error.response || error);
       setError("Failed to update the product. Please try again.");
     } finally {
       setLoading(false);
