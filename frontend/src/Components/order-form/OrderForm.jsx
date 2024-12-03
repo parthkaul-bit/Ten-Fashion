@@ -159,9 +159,9 @@ export const OrderForm = () => {
                     <label className="block mb-4 text-lg text-gray-900 dark:text-white">Payment Method</label>
                     <select id="payment" onChange={handleChange} value={formData.payment} className="ml-1.5 bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-2xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                         <option value="" disabled>Select Payment Method</option>
-                        <option value="card-payment">Credit/Debit Card</option>
-                        <option value="upi">UPI</option>
                         <option value="Cash on delivery">Cash on delivery</option>
+                        <option value="card payment">Credit/Debit Card</option>
+                        <option value="upi">UPI</option>
                     </select>
                 </div>
                 {/* <fieldset>
