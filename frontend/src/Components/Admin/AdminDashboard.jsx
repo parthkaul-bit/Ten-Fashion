@@ -18,9 +18,9 @@ function AdminDashboard() {
     },
     {
       title: "Queries",
-      description: "Respond to customer mails.",
-      link: "/contact-us",
-      buttonText: "Go to Contacts",
+      description: "Check customer queries.",
+      link: "/admin/queries",
+      buttonText: "Go to queries",
     },
   ];
 
