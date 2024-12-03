@@ -5,22 +5,32 @@ import filterIcon1 from "../../assets/images/searchedProducts/filter_icon1.jpeg"
 import filterIcon2 from "../../assets/images/searchedProducts/filter_icon2.jpeg";
 import filterIcon3 from "../../assets/images/searchedProducts/filter_icon3.jpeg";
 import { Dropdown } from "flowbite-react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function SearchedProducts() {
   const [isChecked, setIsChecked] = useState(false);
-  const [flexBasis, setFlexBasis] = useState("23%");
+  const [width, setWidth] = useState("20rem");
+  const [titleFont, setTitleFont] = useState("1.2rem");
+  const [priceFont, setPriceFont] = useState("1.1rem");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("Price: high to low");
   const [products, setProducts] = useState([]);
   const [sortedProducts, setSortedProducts] = useState([]);
   const [error, setError] = useState(null);
 
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const searchQuery =  queryParams.get("query") || "";
+  const [filteredProducts, setFilteredProducts] = useState([]);
+
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   };
 
-  const handleFilterClick = (basis) => {
-    setFlexBasis(basis);
+  const handleFilterClick = (basis, titlefont, pricefont) => {
+    setWidth(basis);
+    setTitleFont(titlefont);
+    setPriceFont(pricefont)
   };
 
   const toggleSidebar = () => {
@@ -42,7 +52,7 @@ function SearchedProducts() {
       if (order === "desc") return b.price - a.price;
       return 0;
     });
-    setSortedProducts(sorted);
+    setFilteredProducts(sorted);
   };
 
   useEffect(() => {
@@ -55,17 +65,33 @@ function SearchedProducts() {
         }
         const data = await response.json();
         setProducts(data);
-        setSortedProducts(data); // Initialize sorted products with fetched products
+        const filtered = data.filter((product) => {
+          const query = searchQuery.toLowerCase();
+          return (
+            product.productTitle.toLowerCase().includes(query) ||
+            product.productDescription.toLowerCase().includes(query) ||
+            product.category.toLowerCase().includes(query)
+          );
+        });
+        setFilteredProducts(filtered)
+        
+        // setSortedProducts(filtered); // Initialize sorted products with fetched products
       } catch (err) {
         setError(err.message);
       }
     };
 
     fetchProducts();
-  }, []);
+  }, [searchQuery]);
+
+  const navigate = useNavigate();
+
+    const handleViewProduct = (id) => {
+        navigate(`/product/${id}`);
+    };
 
   return (
-    <div className="w-full">
+    <div className="w-full mb-10">
       {/* Hero Section */}
       <div
         className="w-full h-[180px] bg-center bg-cover flex items-center justify-center md:items-center text-center"
@@ -74,7 +100,7 @@ function SearchedProducts() {
         }}
       >
         <h1 className="w-auto text-white text-4xl font-semibold">
-          Search Results: "....."
+          Search Results: "{searchQuery}"
         </h1>
       </div>
 
@@ -85,31 +111,30 @@ function SearchedProducts() {
             className="font-semibold flex items-center gap-2 cursor-pointer"
             onClick={toggleSidebar}
           >
-            <FaFilter />
-            Filter
+            {/* <FaFilter /> */}
+            View :
           </h1>
-
-          <div className="flex gap-4 h-5 my-auto max-sm:w-5">
+          <div className="hidden md:flex lg:flex gap-4 h-5 my-auto max-sm:w-5">
             <img
               src={filterIcon1}
               alt="Filter Icon"
               className="cursor-pointer"
-              onClick={() => handleFilterClick("45%")} // 2 items per row
+              onClick={() => handleFilterClick("41rem","1.6rem","1.5rem")} // 2 items per row
             />
             <img
               src={filterIcon2}
               alt="Filter Icon"
-              className="cursor-pointer"
-              onClick={() => handleFilterClick("31%")} // 3 items per row
+              className="md:hidden block lg:block cursor-pointer"
+              onClick={() => handleFilterClick("27rem","1.4rem","1.3rem")} // 3 items per row
             />
             <img
               src={filterIcon3}
               alt="Filter Icon"
               className="cursor-pointer"
-              onClick={() => handleFilterClick("23%")} // 4 items per row
+              onClick={() => handleFilterClick("20rem","1.2rem","1.1rem")} // 4 items per row
             />
           </div>
-          <label className="flex items-center space-x-2 cursor-pointer">
+          {/* <label className="flex items-center space-x-2 cursor-pointer">
             <input
               type="checkbox"
               checked={isChecked}
@@ -119,7 +144,7 @@ function SearchedProducts() {
             <span className="text-gray-800 dark:text-white">
               Show only products on sale
             </span>
-          </label>
+          </label> */}
         </div>
 
         <div>
@@ -142,11 +167,10 @@ function SearchedProducts() {
         </div>
       </div>
 
-      {/* Sidebar */}
-      {isSidebarOpen && (
+      {/* {isSidebarOpen && (
         <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex">
           {/* Sidebar on the right */}
-          <div className="w-[15%] bg-white dark:bg-gray-800 h-full p-4 shadow-lg max-lg:w-[20%] max-md:w-[30%] max-sm:w-[50%]">
+          {/* <div className="w-[15%] bg-white dark:bg-gray-800 h-full p-4 shadow-lg max-lg:w-[20%] max-md:w-[30%] max-sm:w-[50%]">
             <button
               onClick={toggleSidebar}
               className="my-4 text-gray-600 dark:text-white hover:text-gray-900 dark:hover:text-white"
@@ -173,9 +197,9 @@ function SearchedProducts() {
             </ol>
           </div>
           {/* Click outside to close */}
-          <div className="flex-grow" onClick={toggleSidebar}></div>
+          {/* <div className="flex-grow" onClick={toggleSidebar}></div>
         </div>
-      )}
+      )} */}
 
       {/* Products Section */}
       <div className="w-[80%] flex flex-wrap gap-5 justify-start m-auto max-2xl:w-[90%] max-lg:w-[95%] max-lg:gap-x-4 max-md:w-[98%] max-md:gap-x-2">
@@ -183,16 +207,16 @@ function SearchedProducts() {
           <div className="text-red-600 font-semibold w-full text-center">
             Failed to load products: {error}
           </div>
-        ) : sortedProducts.length > 0 ? (
-          sortedProducts.map((data) => (
-            <div key={data.id} style={{ flexBasis }}>
-              <img
-                className="w-full"
+        ) : filteredProducts.length > 0 ? (
+          filteredProducts.map((data) => (
+            <div key={data._id} className="flex flex-col mx-auto">
+              <img onClick={() => handleViewProduct(data._id)} style={{ width: `${width}` }}
+                className="h-[100%] object-cover rounded-lg mb-2 hover:opacity-80 cursor-pointer"
                 src={data.images}
                 alt={data.productTitle}
               />
-              <h1 className="font-semibold">{data.productTitle}</h1>
-              <h1 className="text-gray-600">{data.price}</h1>
+              <h1 className="font-semibold ml-2" style={{fontSize: `${titleFont}`}}>{data.productTitle}</h1>
+              <h1 className="text-gray-600 ml-2" style={{fontSize: `${priceFont}`}}>₹{data.price}.00</h1>
             </div>
           ))
         ) : (

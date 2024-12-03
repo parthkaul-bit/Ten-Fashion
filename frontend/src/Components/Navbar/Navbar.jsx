@@ -13,7 +13,7 @@ function Navbar() {
     setIsSidebarOpen(!isSidebarOpen);
   };
   const handleSearch = () => {
-    navigate(`/searched-products`);
+    navigate(`/searched-products?query=${encodeURIComponent(searchQuery)}`);
     // navigate(`/products?search=${searchQuery}`);
     setIsSidebarOpen(false);
   };
