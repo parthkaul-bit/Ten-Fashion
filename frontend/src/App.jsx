@@ -24,6 +24,7 @@ import { Kids } from "./Components/Category/Kids";
 import ProtectRoute from "./Auth/ProtectRoute";
 import { OrderForm } from "./Components/order-form/OrderForm";
 import ProductEdit from "./Components/Admin/Product/ProductEdit";
+import Queries from "./Components/Admin/Contact/Queries";
 import Wishlist from "./Components/Wishlist/Wishlist";
 
 function App() {
@@ -57,6 +58,7 @@ function App() {
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
           <Route path="/admin/products" element={<ProductList />} />
           <Route path="/admin/orders" element={<OrderList />} />
+          <Route path="/admin/queries" element={<Queries />} />
           <Route path="/about-us" element={<AboutPage />} />
           <Route path="/shop/womens" element={<Womens />} />
           <Route path="/shop/mens" element={<Mens />} />
