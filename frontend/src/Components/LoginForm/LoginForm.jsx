@@ -23,7 +23,6 @@ function LoginForm() {
         },
         body: JSON.stringify({ email, password }),
       });
-
       if (!responce.ok) {
         throw new Error("failed to sign in User");
       }
@@ -41,6 +40,7 @@ function LoginForm() {
       toast.success(data.message);
       navigate("/");
     } catch (error) {
+      toast.error(error.message);
       throw new Error(error);
     }
   };
