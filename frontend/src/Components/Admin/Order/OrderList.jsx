@@ -9,7 +9,7 @@ const OrderList = () => {
 
   useEffect(() => {
     const fetchOrders = async () => {
-      const response = await axios.get("http://localhost:8000/api/orders");
+      const response = await axios.get("http://localhost:8000/api/orders/all");
       setOrders(response.data);
     };
     fetchOrders();
@@ -37,7 +37,7 @@ const OrderList = () => {
               {orders.map((order) => (
                 <Table.Row key={order._id}>
                   <Table.Cell>{order._id}</Table.Cell>
-                  <Table.Cell>{order.customerName}</Table.Cell>
+                  <Table.Cell>{order.CustomerName}</Table.Cell>
                   <Table.Cell>
                     <Badge
                       color={
