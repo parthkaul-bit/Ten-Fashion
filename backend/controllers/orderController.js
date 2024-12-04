@@ -4,13 +4,15 @@ const Cart = require("../models/cart");
 // Create a new order
 const createOrder = async (req, res) => {
   try {
-    const { totalAmount,
+    const {
+      totalAmount,
       shippingAddress,
       paymentMethod,
       CustomerName,
       Email,
       Phone,
-      notes } = req.body;
+      notes,
+    } = req.body;
 
     // Fetch the authenticated user's cart
     const cart = await Cart.findOne({ userId: req.user._id });
@@ -34,7 +36,7 @@ const createOrder = async (req, res) => {
       CustomerName,
       Email,
       Phone,
-      notes
+      notes,
     });
 
     await order.save();
@@ -89,9 +91,19 @@ const updateOrderStatus = async (req, res) => {
     res.status(500).json({ message: "Internal server error", error });
   }
 };
-
+const getAllOrders = async (req, res) => {
+  try {
+    // Fetch all orders from the database
+    const orders = await Order.find({}); // Adjust populate as per your schema
+    res.status(200).json(orders);
+  } catch (error) {
+    console.error("Error fetching all orders:", error);
+    res.status(500).json({ message: "Failed to fetch orders." });
+  }
+};
 module.exports = {
   createOrder,
   getUserOrders,
   updateOrderStatus,
+  getAllOrders,
 };
