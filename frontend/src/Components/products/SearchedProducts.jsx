@@ -209,14 +209,14 @@ function SearchedProducts() {
           </div>
         ) : filteredProducts.length > 0 ? (
           filteredProducts.map((data) => (
-            <div key={data._id} className="flex flex-col mx-auto">
+            <div key={data._id} className="flex flex-col">
               <img onClick={() => handleViewProduct(data._id)} style={{ width: `${width}` }}
                 className="h-[100%] object-cover rounded-lg mb-2 hover:opacity-80 cursor-pointer"
                 src={data.images}
                 alt={data.productTitle}
               />
               <h1 className="font-semibold ml-2" style={{fontSize: `${titleFont}`}}>{data.productTitle}</h1>
-              <h1 className="text-gray-600 ml-2" style={{fontSize: `${priceFont}`}}>₹{data.price}.00</h1>
+              <h1 className="ml-2" style={{fontSize: `${priceFont}`}}>₹{data.price}.00</h1>
             </div>
           ))
         ) : (

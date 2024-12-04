@@ -26,6 +26,7 @@ import { OrderForm } from "./Components/order-form/OrderForm";
 import ProductEdit from "./Components/Admin/Product/ProductEdit";
 import Queries from "./Components/Admin/Contact/Queries";
 import Wishlist from "./Components/Wishlist/Wishlist";
+import { OrderStatus } from "./Components/order-status/OrderStatus";
 
 function App() {
   const [isSignup, setIsSignup] = useState(false);
@@ -64,6 +65,7 @@ function App() {
           <Route path="/shop/mens" element={<Mens />} />
           <Route path="/shop/kids" element={<Kids />} />
           <Route path="/order-form" element={<OrderForm />} />
+          <Route path="/order-tracking" element={<OrderStatus />} />
           <Route path="*" element={<h1>Page not found</h1>} />
         </Routes>
       </div>

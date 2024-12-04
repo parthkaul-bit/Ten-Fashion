@@ -118,7 +118,7 @@ export const Shopping_Cart = () => {
                                 <hr className="h-[1.5px] bg-slate-400" />
                                 <div className="flex justify-between mx-5">
                                     <div className="text-sm font-medium">Total</div>
-                                    <div className="text-4xl font-semibold">₹{totalAmount()}</div>
+                                    <div className="text-4xl font-semibold">₹{totalAmount()}.00</div>
                                 </div>
                                 <button className="border-2 rounded-full py-4 mt-6 bg-black text-white font-semibold text-xl hover:text-black hover:bg-white hover:border-black">
                                 <Link to='/order-form'>

@@ -101,6 +101,7 @@ function Navbar() {
               >
                 <Dropdown.Item href="/login">Login</Dropdown.Item>
                 <Dropdown.Item href="/signup">sign up</Dropdown.Item>
+                <Dropdown.Item href="/order-tracking">Check order status</Dropdown.Item>
               </Dropdown>
 
               <DarkModeToggle />
