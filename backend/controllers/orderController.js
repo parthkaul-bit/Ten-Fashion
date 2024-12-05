@@ -106,11 +106,11 @@ const updateOrderStatus = async (req, res) => {
       return res.status(404).json({ message: "Order not found" });
     }
 
-    if (order.userId.toString() !== req.user._id.toString()) {
-      return res
-        .status(403)
-        .json({ message: "Unauthorized to update this order" });
-    }
+    // if (order.userId.toString() !== req.user._id.toString()) {
+    //   return res
+    //     .status(403)
+    //     .json({ message: "Unauthorized to update this order" });
+    // }
 
     order.status = status;
     await order.save();
