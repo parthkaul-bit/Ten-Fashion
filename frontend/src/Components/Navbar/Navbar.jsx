@@ -3,6 +3,7 @@ import { FaSearch, FaHeart, FaShoppingCart } from "react-icons/fa";
 import DarkModeToggle from "../DarkModeToggle/DarkModeToggle";
 import { Link, useNavigate } from "react-router-dom"; // For React Router
 import { useState } from "react";
+import Logout from "../logout/Logout";
 
 function Navbar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -101,6 +102,7 @@ function Navbar() {
               >
                 <Dropdown.Item href="/login">Login</Dropdown.Item>
                 <Dropdown.Item href="/signup">sign up</Dropdown.Item>
+                <Dropdown.Item href="/login">Logout</Dropdown.Item>
                 <Dropdown.Item href="/order-tracking">Check order status</Dropdown.Item>
               </Dropdown>
 
