@@ -77,49 +77,51 @@ const OrderList = () => {
       <div className="w-[72%] max-md:w-[100%]">
         <Card>
           <h2 className="text-2xl font-bold mb-4">Orders</h2>
-          <Table>
-            <Table.Head>
-              <Table.HeadCell>Order ID</Table.HeadCell>
-              <Table.HeadCell>Customer</Table.HeadCell>
-              <Table.HeadCell>Status</Table.HeadCell>
-              <Table.HeadCell>Actions</Table.HeadCell>
-            </Table.Head>
-            <Table.Body>
-              {orders.map((order) => (
-                <Table.Row key={order._id}>
-                  <Table.Cell>{order._id}</Table.Cell>
-                  <Table.Cell>{order.CustomerName}</Table.Cell>
-                  <Table.Cell>
-                    <Badge color={statusColors[order.status] || "gray"}>
-                      {order.status}
-                    </Badge>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <select
-                      value={orderStatus[order._id]}
-                      onChange={(e) =>
-                        handleStatusChange(order._id, e.target.value)
-                      }
-                      className="mr-2 border border-gray-300 rounded px-2 py-1"
-                    >
-                      <option value="Pending">Pending</option>
-                      <option value="Processing">Processing</option>
-                      <option value="Shipped">Shipped</option>
-                      <option value="Delivered">Delivered</option>
-                      <option value="Cancelled">Cancelled</option>
-                    </select>
-                    <Button
-                      color="info"
-                      size="sm"
-                      onClick={() => handleUpdate(order._id)}
-                    >
-                      Update
-                    </Button>
-                  </Table.Cell>
-                </Table.Row>
-              ))}
-            </Table.Body>
-          </Table>
+          <div className="overflow-x-auto">
+            <Table>
+              <Table.Head>
+                <Table.HeadCell>Order ID</Table.HeadCell>
+                <Table.HeadCell>Customer</Table.HeadCell>
+                <Table.HeadCell>Status</Table.HeadCell>
+                <Table.HeadCell>Actions</Table.HeadCell>
+              </Table.Head>
+              <Table.Body>
+                {orders.map((order) => (
+                  <Table.Row key={order._id}>
+                    <Table.Cell>{order._id}</Table.Cell>
+                    <Table.Cell>{order.CustomerName}</Table.Cell>
+                    <Table.Cell>
+                      <Badge color={statusColors[order.status] || "gray"}>
+                        {order.status}
+                      </Badge>
+                    </Table.Cell>
+                    <Table.Cell className="flex">
+                      <select
+                        value={orderStatus[order._id]}
+                        onChange={(e) =>
+                          handleStatusChange(order._id, e.target.value)
+                        }
+                        className="mr-2 border border-gray-300 rounded px-2 py-1"
+                      >
+                        <option value="Pending">Pending</option>
+                        <option value="Processing">Processing</option>
+                        <option value="Shipped">Shipped</option>
+                        <option value="Delivered">Delivered</option>
+                        <option value="Cancelled">Cancelled</option>
+                      </select>
+                      <Button
+                        color="info"
+                        size="sm"
+                        onClick={() => handleUpdate(order._id)}
+                      >
+                        Update
+                      </Button>
+                    </Table.Cell>
+                  </Table.Row>
+                ))}
+              </Table.Body>
+            </Table>
+          </div>
         </Card>
       </div>
     </div>
