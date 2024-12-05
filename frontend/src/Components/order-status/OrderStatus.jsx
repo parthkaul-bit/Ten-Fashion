@@ -31,7 +31,7 @@ export const OrderStatus = () => {
         <>
         {
             orderData.length !== 0 ? (
-                <div className="my-5 w-[95%] md:w-[80%] lg:w-[70%] p-5 rounded-md border-[.05rem] shadow-md">
+                <div className="my-5 w-[95%] md:w-[80%] lg:w-[70%] p-5 rounded-md border-[.05rem] shadow-md dark:bg-slate-700">
                     <div className="flex justify-center text-3xl md:text-4xl lg:text-4xl font-medium mb-8">
                         <div>Order History</div>
                     </div>
@@ -47,9 +47,9 @@ export const OrderStatus = () => {
                     {
                         orderData.map((data, index) => (
                             <>
-                            <div key={data._id} className="flex justify-between font-medium text-xs md:text-lg lg:text-lg mr-0 md:mr-2 lg:mr-2 text-slate-600 my-5">
+                            <div key={data._id} className="flex justify-between font-medium text-xs md:text-lg lg:text-lg mr-0 md:mr-2 lg:mr-2 text-slate-600 dark:text-white my-5">
                                 <div className="flex items-center gap-2">
-                                    <button onClick={() => toggleAccordian(data._id)} className="ml-3 text-blue-600 hover:underline">
+                                    <button onClick={() => toggleAccordian(data._id)} className="ml-3 hover:underline">
                                         {expandOrder === data._id ? <MdExpandLess size={"1.3rem"}/> : <MdExpandMore size={"1.3rem"}/>}
                                     </button>
                                     <div>#00{index + 1}</div>
@@ -57,7 +57,7 @@ export const OrderStatus = () => {
                                 <div>{`${data.createdAt.split("T")[0]}`}</div>
                                 <div>{data.products.reduce((acc, item) => acc + item.quantity, 0)}</div>
                                 <div>₹{data.totalAmount}.00</div>
-                                <div className="text-amber-600">{data.status}</div>
+                                <div className={`${data.status === 'Pending' ? "text-yellow-400" : data.status === 'Processing' ? "text-blue-600" : data.status === 'Shipped' ? "text-purple-600" : data.status === 'Delivered' ? "text-green-600" : data.status === 'Cancelled' ? "text-red-600" : "text-gray-600" }`}>{data.status}</div>
                             </div>
                             <div>
                             {expandOrder === data._id && (
