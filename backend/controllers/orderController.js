@@ -64,22 +64,53 @@ const getUserOrders = async (req, res) => {
 };
 
 // Update the status of an order
+// const updateOrderStatus = async (req, res) => {
+//   try {
+//     const { orderId } = req.params;
+//     const { status } = req.body;
+
+//     const order = await Order.findById(orderId);
+//     if (!order) {
+//       return res.status(404).json({ message: "Order not found" });
+//     }
+
+//     // Check if the logged-in user is authorized to update this order
+//     if (order.userId.toString() !== req.user._id.toString()) {
+//       return res
+//         .status(403)
+//         .json({ message: "Unauthorized to update this order" });
+//     }
+
+//     order.status = status;
+//     await order.save();
+
+//     res
+//       .status(200)
+//       .json({ message: "Order status updated successfully", order });
+//   } catch (error) {
+//     res.status(500).json({ message: "Internal server error", error });
+//   }
+// };
+
 const updateOrderStatus = async (req, res) => {
   try {
     const { orderId } = req.params;
     const { status } = req.body;
+
+    console.log("Order ID:", orderId);
+    console.log("Status:", status);
+    console.log("User:", req.user);
 
     const order = await Order.findById(orderId);
     if (!order) {
       return res.status(404).json({ message: "Order not found" });
     }
 
-    // Check if the logged-in user is authorized to update this order
-    if (order.userId.toString() !== req.user._id.toString()) {
-      return res
-        .status(403)
-        .json({ message: "Unauthorized to update this order" });
-    }
+    // if (order.userId.toString() !== req.user._id.toString()) {
+    //   return res
+    //     .status(403)
+    //     .json({ message: "Unauthorized to update this order" });
+    // }
 
     order.status = status;
     await order.save();
@@ -88,9 +119,11 @@ const updateOrderStatus = async (req, res) => {
       .status(200)
       .json({ message: "Order status updated successfully", order });
   } catch (error) {
+    console.error("Error updating order:", error);
     res.status(500).json({ message: "Internal server error", error });
   }
 };
+
 const getAllOrders = async (req, res) => {
   try {
     // Fetch all orders from the database
