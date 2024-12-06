@@ -5,17 +5,23 @@ const Logout = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    // Clear user session (e.g., localStorage, cookies, or context state)
-    localStorage.removeItem("authToken"); // Example: Removing token from localStorage
+    try {
+      localStorage.removeItem("token");
 
-    // Redirect to login page or home page
-    navigate("/login");
+      console.log("Logged out successfully!");
+
+      navigate("/login");
+    } catch (error) {
+      console.error("Error during logout:", error);
+    }
   };
 
   return (
-    <li onClick={handleLogout}>
-      Logout
-    </li>
+    <>
+      <div onClick={handleLogout} style={{ cursor: "pointer" }}>
+        Logout
+      </div>
+    </>
   );
 };
 
