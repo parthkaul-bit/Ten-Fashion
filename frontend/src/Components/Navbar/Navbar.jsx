@@ -4,6 +4,7 @@ import DarkModeToggle from "../DarkModeToggle/DarkModeToggle";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Logout from "../logout/Logout";
+import { RxCross2 } from "react-icons/rx";
 
 function Navbar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -131,7 +132,7 @@ function Navbar() {
               onClick={toggleSidebar}
               className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
             >
-              X
+              <RxCross2 />
             </button>
             <input
               type="text"
