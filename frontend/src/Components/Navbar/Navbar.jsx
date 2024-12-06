@@ -1,19 +1,20 @@
 import { Avatar, Dropdown, Navbar as FlowbiteNavbar } from "flowbite-react";
 import { FaSearch, FaHeart, FaShoppingCart } from "react-icons/fa";
 import DarkModeToggle from "../DarkModeToggle/DarkModeToggle";
-import { Link, useNavigate } from "react-router-dom"; // For React Router
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import Logout from "../logout/Logout";
 
 function Navbar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const isAuthenticated = localStorage.getItem("token");
   const navigate = useNavigate();
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
   const handleSearch = () => {
     navigate(`/searched-products?query=${encodeURIComponent(searchQuery)}`);
-    // navigate(`/products?search=${searchQuery}`);
     setIsSidebarOpen(false);
   };
 
@@ -99,9 +100,21 @@ function Navbar() {
                 inline
                 className="dark:text-white"
               >
-                <Dropdown.Item href="/login">Login</Dropdown.Item>
-                <Dropdown.Item href="/signup">sign up</Dropdown.Item>
-                <Dropdown.Item href="/order-tracking">Check order status</Dropdown.Item>
+                {!isAuthenticated ? (
+                  <>
+                    <Dropdown.Item href="/login">Login</Dropdown.Item>
+                    <Dropdown.Item href="/signup">Sign up</Dropdown.Item>
+                  </>
+                ) : (
+                  <>
+                    <Dropdown.Item>
+                      <Logout />
+                    </Dropdown.Item>
+                    <Dropdown.Item href="/order-tracking">
+                      Check order status
+                    </Dropdown.Item>
+                  </>
+                )}
               </Dropdown>
 
               <DarkModeToggle />
