@@ -127,7 +127,7 @@ export const ProductForm = () => {
       }
 
       const response = await axios.post(
-        "http://localhost:8000/api/product",
+        "https://ten-fashion.onrender.com/api/product",
         form,
         {
           headers: {

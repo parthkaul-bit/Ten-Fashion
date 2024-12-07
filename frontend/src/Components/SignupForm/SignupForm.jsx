@@ -17,7 +17,7 @@ function SignupForm() {
       return
     }
     try {
-      const responce = await fetch("http://localhost:8000/api/auth/signup", {
+      const responce = await fetch("https://ten-fashion.onrender.com/api/auth/signup", {
         method: "POST",
         // credentials: "include",
         headers: {

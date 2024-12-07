@@ -31,7 +31,7 @@ export const OrderForm = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:8000/cartItems',{
+                const response = await axios.get('https://ten-fashion.onrender.com/cartItems',{
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setCartItems(response.data.flatMap((resp) => (resp.products)))
@@ -70,7 +70,7 @@ export const OrderForm = () => {
                 Phone: formData.phone,
                 notes: formData.message,
             }
-            const response = await axios.post("http://localhost:8000/api/orders",backendData,{
+            const response = await axios.post("https://ten-fashion.onrender.com/api/orders",backendData,{
                 headers: {Authorization: `Bearer ${token}`}
             });
             console.log(response.data)

@@ -17,7 +17,7 @@ export const handleAddToCart = async (
 
   try {
     const response = await axios.post(
-      "http://localhost:8000/cartItem",
+      "https://ten-fashion.onrender.com/cartItem",
       {
         productId,
         quantity,

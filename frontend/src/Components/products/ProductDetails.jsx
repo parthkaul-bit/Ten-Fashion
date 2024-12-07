@@ -74,7 +74,7 @@ function ProductDetails() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/products");
+        const response = await axios.get("https://ten-fashion.onrender.com/api/products");
         setProductData(response.data);
       } catch (error) {
         console.error("No product available to show", error);

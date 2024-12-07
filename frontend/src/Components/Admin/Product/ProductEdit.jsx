@@ -59,7 +59,7 @@ const ProductEdit = () => {
     const fetchProduct = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/api/product/${id}`
+          `https://ten-fashion.onrender.com/api/product/${id}`
         );
         setFormData(response.data);
       } catch (error) {
@@ -105,7 +105,7 @@ const ProductEdit = () => {
         form.append("images", formData.image);
       }
 
-      await axios.put(`http://localhost:8000/api/product/${id}`, form, {
+      await axios.put(`https://ten-fashion.onrender.com/api/product/${id}`, form, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

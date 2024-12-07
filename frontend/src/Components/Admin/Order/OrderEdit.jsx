@@ -12,7 +12,7 @@ const OrderEdit = () => {
   useEffect(() => {
     const fetchOrder = async () => {
       const response = await axios.get(
-        `http://localhost:8000/api/orders/${id}`
+        `https://ten-fashion.onrender.com/api/orders/${id}`
       );
       setOrder(response.data);
       setStatus(response.data.status);
@@ -21,7 +21,7 @@ const OrderEdit = () => {
   }, [id]);
 
   const handleUpdate = async () => {
-    await axios.put(`http://localhost:8000/api/orders/${id}`, { status });
+    await axios.put(`https://ten-fashion.onrender.com/api/orders/${id}`, { status });
     navigate("/admin/orders");
   };
 

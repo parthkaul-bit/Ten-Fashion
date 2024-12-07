@@ -59,7 +59,7 @@ function SearchedProducts() {
     // Fetch data from the API
     const fetchProducts = async () => {
       try {
-        const response = await fetch("http://localhost:8000/api/products");
+        const response = await fetch("https://ten-fashion.onrender.com/api/products");
         if (!response.ok) {
           throw new Error("Failed to fetch products");
         }

@@ -16,7 +16,7 @@ export const ProductCard = ({ data }) => {
 
   // const handleAddToCart = async (productId, quantity, productTitle, price, images) => {
   //     try {
-  //         const response = await axios.post('http://localhost:8000/cartItem', { productId, quantity, productTitle, price, images })
+  //         const response = await axios.post('https://ten-fashion.onrender.com/cartItem', { productId, quantity, productTitle, price, images })
 
   //         console.log('Added product to cart:', response.data);
   //     }

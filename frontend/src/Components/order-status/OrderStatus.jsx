@@ -12,7 +12,7 @@ export const OrderStatus = () => {
         const token = localStorage.getItem('token')
         const fetch_OrderList = async () => {
             try {
-                const response = await axios.get("http://localhost:8000/api/orders",{
+                const response = await axios.get("https://ten-fashion.onrender.com/api/orders",{
                     headers: { Authorization: `Bearer ${token}` }
                 })
                 setOrderData(response.data.orders)

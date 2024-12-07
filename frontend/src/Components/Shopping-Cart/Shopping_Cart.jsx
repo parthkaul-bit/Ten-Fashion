@@ -17,7 +17,7 @@ export const Shopping_Cart = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:8000/cartItems',{
+                const response = await axios.get('https://ten-fashion.onrender.com/cartItems',{
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setCartItems(response.data.flatMap((resp) => (resp.products)))
@@ -35,7 +35,7 @@ export const Shopping_Cart = () => {
         setCartItems(updatedCart);
 
         try {
-            const response = await axios.patch('http://localhost:8000/cartItem',
+            const response = await axios.patch('https://ten-fashion.onrender.com/cartItem',
                 {
                     productId,
                     quantity:  amount,
@@ -56,7 +56,7 @@ export const Shopping_Cart = () => {
 
     const deleteItem = async (id) => {
         try {
-            await axios.delete(`http://localhost:8000/cartItems`,{
+            await axios.delete(`https://ten-fashion.onrender.com/cartItems`,{
                 data : { productId: id },
                 headers: { Authorization: `Bearer ${token}` }   
             });

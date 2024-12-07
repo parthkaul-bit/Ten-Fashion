@@ -9,7 +9,7 @@ const OrderList = () => {
 
   useEffect(() => {
     const fetchOrders = async () => {
-      const response = await axios.get("http://localhost:8000/api/orders/all");
+      const response = await axios.get("https://ten-fashion.onrender.com/api/orders/all");
       setOrders(response.data);
 
       // Initialize status for each order
@@ -35,7 +35,7 @@ const OrderList = () => {
 
     try {
       await axios.put(
-        `http://localhost:8000/api/orders/${orderId}`,
+        `https://ten-fashion.onrender.com/api/orders/${orderId}`,
         { status: newStatus },
         {
           headers: {

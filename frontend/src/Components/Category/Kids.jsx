@@ -18,7 +18,7 @@ export const Kids = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:8000/api/products`);
+                const response = await axios.get(`https://ten-fashion.onrender.com/api/products`);
                 const allProducts = response.data;
                 const KidsProducts = allProducts.filter((product) => product.category === 'Children')
                 setFilteredData(KidsProducts)

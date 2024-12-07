@@ -15,7 +15,7 @@ function LoginForm() {
     e.preventDefault();
     setLoading(true);
     try {
-      const responce = await fetch("http://localhost:8000/api/auth/login", {
+      const responce = await fetch("https://ten-fashion.onrender.com/api/auth/login", {
         method: "POST",
         credentials: "include",
         headers: {

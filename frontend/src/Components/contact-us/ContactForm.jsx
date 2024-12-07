@@ -21,7 +21,7 @@ const ContactForm = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/contactForm",
+        "https://ten-fashion.onrender.com/contactForm",
         formData
       );
       setResponseMessage(response.data.message);

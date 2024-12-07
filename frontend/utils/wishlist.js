@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8000";
+const API_URL = "https://ten-fashion.onrender.com";
 
 export const addToWishlist = async (userId, productId) => {
   console.log(userId, productId);
