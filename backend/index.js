@@ -19,10 +19,21 @@ const CONNECTION_URL =
 // Middleware
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://ten-fashion.netlify.app/"],
+    origin: function (origin, callback) {
+      const allowedOrigins = [
+        "http://localhost:5173",
+        "https://ten-fashion.netlify.app",
+      ];
+      if (allowedOrigins.indexOf(origin) !== -1) {
+        callback(null, true);  // Allow the origin
+      } else {
+        callback(new Error("Not allowed by CORS"));  // Reject the origin
+      }
+    },
     credentials: true,
   })
 );
+
 app.use(express.json());
 
 app.use(cookieParser());
