@@ -15,9 +15,9 @@ export const HomePage = () => {
   }, []);
 
   return (
-    <div>
+    <div className="flex flex-col">
       <HeroCarousel />
-      <div>
+      <div className="mx-auto">
         <h1 className="text-4xl text-center pt-8 pb-4">Featured Products</h1>
         <ProductCard data={products} />
       </div>
