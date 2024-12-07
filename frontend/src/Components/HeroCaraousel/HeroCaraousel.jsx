@@ -53,9 +53,9 @@ export default function HeroCarousel() {
   return (
     <div className="relative">
       <Carousel
-        style={{ height: "100%", width: "95%" }}
+        style={{ height: "100%", width: "100%" }}
         slide={true}
-        className="transition-all duration-700 ease-in-out mx-auto mt-2"
+        className="transition-all duration-700 ease-in-out mx-auto"
         activeIndex={currentIndex}
         onSlideChange={setCurrentIndex}
       >
