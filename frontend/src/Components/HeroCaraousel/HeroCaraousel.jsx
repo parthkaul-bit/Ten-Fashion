@@ -48,9 +48,9 @@ export default function HeroCarousel() {
   return (
     <div className="relative">
       <Carousel
-        style={{ height: "135%", width: "100%" }}
+        style={{ height: "50%", width: "65%" }}
         slide={true}
-        className="transition-all duration-700 ease-in-out"
+        className="transition-all duration-700 ease-in-out mx-auto mt-2"
         activeIndex={currentIndex}
         onSlideChange={setCurrentIndex}
       >
@@ -63,7 +63,7 @@ export default function HeroCarousel() {
             <img
               src={image.src}
               alt={image.alt}
-              className="w-full h-full object-cover transition-opacity duration-1000"
+              className="w-[100%] h-[100%] object-cover transition-opacity duration-1000"
             />
           </div>
         ))}
