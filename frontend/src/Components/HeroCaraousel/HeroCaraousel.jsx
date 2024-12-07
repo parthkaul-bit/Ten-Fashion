@@ -6,35 +6,40 @@ export default function HeroCarousel() {
 
   const images = [
     {
-      src: "./herosliderImages/pic2.jpg",
+      src: "./herosliderImages/img1.png",
       alt: "Stylish woman in a black dress",
       text: "Stylish Woman in Black",
     },
     {
-      src: "./herosliderImages/pic3.jpg",
+      src: "./herosliderImages/img2.png",
       alt: "Fashionable outfit with sunglasses",
       text: "Fashionable Outfit",
     },
     {
-      src: "./herosliderImages/pic4.jpg",
-      alt: "Men's casual wear with a hat",
-      text: "Casual Men's Wear",
+      src: "./herosliderImages/img3.png",
+      alt: "Fashionable outfit with sunglasses",
+      text: "Fashionable Outfit",
     },
-    {
-      src: "./herosliderImages/pic5.jpg",
-      alt: "Elegant clothing showcase",
-      text: "Elegant Showcase",
-    },
-    {
-      src: "./herosliderImages/pic6.jpg",
-      alt: "Modern fashion accessories",
-      text: "Modern Accessories",
-    },
-    {
-      src: "./herosliderImages/pic7.jpg",
-      alt: "Modern fashion accessories",
-      text: "Chic Accessories",
-    },
+    // {
+    //   src: "./herosliderImages/pic4.jpg",
+    //   alt: "Men's casual wear with a hat",
+    //   text: "Casual Men's Wear",
+    // },
+    // {
+    //   src: "./herosliderImages/pic5.jpg",
+    //   alt: "Elegant clothing showcase",
+    //   text: "Elegant Showcase",
+    // },
+    // {
+    //   src: "./herosliderImages/pic6.jpg",
+    //   alt: "Modern fashion accessories",
+    //   text: "Modern Accessories",
+    // },
+    // {
+    //   src: "./herosliderImages/pic7.jpg",
+    //   alt: "Modern fashion accessories",
+    //   text: "Chic Accessories",
+    // },
   ];
 
   const handlePrev = () => {
@@ -48,7 +53,7 @@ export default function HeroCarousel() {
   return (
     <div className="relative">
       <Carousel
-        style={{ height: "50%", width: "65%" }}
+        style={{ height: "100%", width: "95%" }}
         slide={true}
         className="transition-all duration-700 ease-in-out mx-auto mt-2"
         activeIndex={currentIndex}
@@ -57,7 +62,7 @@ export default function HeroCarousel() {
         {images.map((image, index) => (
           <div
             key={index}
-            className="relative"
+            className="relative brightness-105"
             style={{ height: "100%", width: "100%" }}
           >
             <img
