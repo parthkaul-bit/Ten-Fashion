@@ -1,13 +1,8 @@
 import { useContext, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import Navbar from "../src/components/Navbar/Navbar";
-import Footer from "../src/components/Footer/Footer";
-import SignupForm from "./components/SignupForm/SignupForm";
-import LoginForm from "./components/LoginForm/LoginForm";
 import { ProductCard } from "./Components/ProductCard";
 import { ProductForm } from "./Components/ProductForm";
-import { Shopping_Cart } from "./components/Shopping-Cart/Shopping_Cart";
 import ContactPage from "./Components/contact-us/ContactPage";
 import ProductDetails from "./Components/products/ProductDetails";
 import { HomePage } from "./Components/home/HomePage";
@@ -27,6 +22,11 @@ import ProductEdit from "./Components/Admin/Product/ProductEdit";
 import Queries from "./Components/Admin/Contact/Queries";
 import Wishlist from "./Components/Wishlist/Wishlist";
 import { OrderStatus } from "./Components/order-status/OrderStatus";
+import Navbar from "./Components/Navbar/Navbar";
+import Footer from "./Components/Footer/Footer";
+import SignupForm from "./Components/SignupForm/SignupForm";
+import LoginForm from "./Components/LoginForm/LoginForm";
+import { Shopping_Cart } from "./Components/Shopping-Cart/Shopping_Cart";
 
 function App() {
   const [isSignup, setIsSignup] = useState(false);
