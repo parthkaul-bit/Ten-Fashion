@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { data } from "./data";
 import axios from "axios";
+import {useNavigate} from 'react-router-dom';
 
 export const OrderForm = () => {
 
@@ -24,6 +25,7 @@ export const OrderForm = () => {
         }
     });
     console.log(cartItems)
+    const navigate = useNavigate();
     const token = localStorage.getItem('token')
 
     useEffect(() => {
@@ -72,6 +74,9 @@ export const OrderForm = () => {
                 headers: {Authorization: `Bearer ${token}`}
             });
             console.log(response.data)
+            if (data) {
+                navigate("/order-tracking")
+            }
         } catch (error) {
             console.error(error)
         }
@@ -158,39 +163,12 @@ export const OrderForm = () => {
                 <div className="mt-8">
                     <label className="block mb-4 text-lg text-gray-900 dark:text-white">Payment Method</label>
                     <select id="payment" onChange={handleChange} value={formData.payment} className="ml-1.5 bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-2xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                        <option value="" disabled>Select Payment Method</option>
+                        <option value="" >Select Payment Method</option>
                         <option value="Cash on delivery">Cash on delivery</option>
                         <option value="card payment">Credit/Debit Card</option>
                         <option value="upi">UPI</option>
                     </select>
                 </div>
-                {/* <fieldset>
-                    <legend className="sr-only">Payments</legend>
-                    <div className="my-2 ml-1 flex gap-2 items-center">
-                        <input id="payment" type="radio" name="payment" onChange={handleChange} value={formData.payment.Cash_on_delivery} className="w-4 h-4 border-gray-700 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600" defaultChecked />
-                        <label htmlFor="payment-option-1" className="block ms-2 text-lg font-medium text-gray-900 dark:text-white">
-                        Cash on delivery
-                        </label>
-                    </div>
-                    <div className="my-2 ml-1 flex gap-2 items-center">
-                        <input id="payment" type="radio" name="payment" onChange={handleChange} value={formData.payment.card_payment} className="w-4 h-4 border-gray-700 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600" />
-                        <label htmlFor="payment-option-2" className="block ms-2 text-lg font-medium text-gray-900 dark:text-white">
-                        Debit card/Credit card
-                        </label>
-                    </div>
-                    <div className="my-2 ml-1 flex gap-2 items-center">
-                        <input id="payment" type="radio" name="payment" onChange={handleChange} value={formData.payment.upi} className="w-4 h-4 border-gray-700 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600" />
-                        <label htmlFor="payment-option-3" className="block ms-2 text-lg font-medium text-gray-900 dark:text-white">
-                        UPI
-                        </label>
-                    </div>
-                    <div className="my-2 ml-1 flex gap-2 items-center">
-                        <input id="payment" type="radio" name="payment" onChange={handleChange} value={formData.payment.Net_Banking} className="w-4 h-4 border-gray-700 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600" />
-                        <label htmlFor="payment-option-4" className="block ms-2 text-lg font-medium text-gray-900 dark:text-white">
-                        Net banking
-                        </label>
-                    </div>
-                </fieldset> */}
                 <div className="mt-4">
                     <p className="text-md font-medium text-gray-500">Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.</p>
                 </div>
