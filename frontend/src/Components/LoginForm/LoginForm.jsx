@@ -29,13 +29,13 @@ function LoginForm() {
       const data = await responce.json();
       console.log(data);
       localStorage.setItem("token", data.token);
+      setCurrentUser(data.user);
       if (data.success === false) {
         setError(data.message);
         setLoading(false);
         return toast.error(data.message);
       }
       setLoading(false);
-      setCurrentUser(data.rest);
       setError(null);
       toast.success(data.message);
       navigate("/");
