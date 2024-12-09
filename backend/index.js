@@ -23,7 +23,7 @@ app.use(
       const allowedOrigins = [
         "http://localhost:5173",
         "https://ten-fashion.netlify.app",
-        "https://ten-fashion.vercel.app/",
+        "https://ten-fashion.vercel.app",
       ];
       if (allowedOrigins.indexOf(origin) !== -1) {
         callback(null, true); // Allow the origin
