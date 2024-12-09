@@ -5,7 +5,11 @@ import { Link, useParams } from "react-router-dom";
 import { handleAddToCart } from "../../../utils/utils";
 import { ProductCard } from "../ProductCard";
 import { useUserContext } from "../../context/useContext";
-import { addToWishlist, removeFromWishlist, fetchWishlist } from "../../../utils/wishlist";
+import {
+  addToWishlist,
+  removeFromWishlist,
+  fetchWishlist,
+} from "../../../utils/wishlist";
 
 function ProductDetails() {
   const [isHeartFilled, setIsHeartFilled] = useState(false);
@@ -28,18 +32,19 @@ function ProductDetails() {
     const checkWishlist = async () => {
       if (currentUser?._id) {
         try {
-          const wishlist = await fetchWishlist(currentUser._id)
-          const IsProductInWishList = wishlist.some(item => item._id === prodId);
-          setIsInWishlist(IsProductInWishList)
+          const wishlist = await fetchWishlist(currentUser._id);
+          const IsProductInWishList = wishlist.some(
+            (item) => item._id === prodId
+          );
+          setIsInWishlist(IsProductInWishList);
         } catch (error) {
-          console.error("failed to fecth wishlist:",error)
+          console.error("failed to fecth wishlist:", error);
         }
       }
     };
 
     checkWishlist();
-
-  },[currentUser, prodId])
+  }, [currentUser, prodId]);
 
   useEffect(() => {
     if (id) {
@@ -70,19 +75,21 @@ function ProductDetails() {
     setLoading(false);
   };
 
-
   useEffect(() => {
     const fetchData = async () => {
+      if (!prodId) return;
       try {
-        const response = await axios.get("https://ten-fashion.onrender.com/api/products");
-        setProductData(response.data);
+        const response = await axios.get(
+          `https://ten-fashion.onrender.com/api/product/${prodId}`
+        );
+        setProductData([response.data]);
       } catch (error) {
-        console.error("No product available to show", error);
+        console.error("Failed to fetch product details", error);
       }
     };
 
-    return () => fetchData();
-  }, []);
+    fetchData();
+  }, [prodId]);
 
   return (
     <div className="w-full h-[auto]">
@@ -210,13 +217,24 @@ function ProductDetails() {
           </div>
 
           <Link to="/cart">
-            <button onClick={() => handleAddToCart(data[0]?._id, quantity, data[0]?.productTitle, data[0]?.price, data[0]?.images)} className="w-[100%] ml-2 mt-10 py-3 font-bold border border-black rounded-3xl hover:bg-black hover:text-white max-md:mt-5">
+            <button
+              onClick={() =>
+                handleAddToCart(
+                  data[0]?._id,
+                  quantity,
+                  data[0]?.productTitle,
+                  data[0]?.price,
+                  data[0]?.images
+                )
+              }
+              className="w-[100%] ml-2 mt-10 py-3 font-bold border border-black rounded-3xl hover:bg-black hover:text-white max-md:mt-5"
+            >
               Buy it now
             </button>
           </Link>
 
           <div className="mt-10 ml-3 flex items-center max-md:mt-5 max-md:flex-col max-md:items-start">
-          <button
+            <button
               className={`w-full py-3 rounded-lg transition flex items-center gap-2 ${
                 loading ? "opacity-50 cursor-not-allowed" : ""
               }`}
