@@ -35,6 +35,7 @@ export const ProductCard = ({ data }) => {
         >
           <a href="#">
             <img
+              onClick={() => handleViewProduct(datas._id)}
               className="p-8 rounded-t-lg h-[30rem] w-96 object-cover"
               src={datas.images || "https://placehold.co/600x400"}
               alt={`${datas.productTitle} image`}

@@ -16,6 +16,7 @@ function ProductDetails() {
 
   const [prodId, setProdId] = useState(null);
   const [productData, setProductData] = useState([]);
+  const [allProductData, setAllProductData] = useState([]);
   const [quantity, setQuantity] = useState(1);
 
   const [isInWishlist, setIsInWishlist] = useState(false);
@@ -90,6 +91,21 @@ function ProductDetails() {
 
     fetchData();
   }, [prodId]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `https://ten-fashion.onrender.com/api/products`
+        );
+        setAllProductData(response.data);
+      } catch (error) {
+        console.error("Failed to fetch product details", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div className="w-full h-[auto]">
@@ -433,7 +449,7 @@ function ProductDetails() {
       <h1 className="text-4xl flex justify-center">More Items for Buy</h1>
       <hr className="w-[80%] mx-auto m-10 h-[1px] bg-gray-600" />
       <div className="flex justify-center">
-        <ProductCard data={productData} />
+        <ProductCard data={allProductData} />
       </div>
     </div>
   );
