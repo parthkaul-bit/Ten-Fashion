@@ -23,9 +23,12 @@ function Navbar() {
     <>
       <FlowbiteNavbar fluid rounded border className="py-4">
         <FlowbiteNavbar.Brand>
+          <div className="flex items-center gap-2 lg:ml-4 md:ml-2 ml-0 ">
+          <img src="/TEN_LOGO.jpeg" className="h-12 w-12 rounded-full" />
           <span className="text-2xl sm:text-sm md:text-xl xl:text-3xl text-gray-900 dark:text-white">
             TEN Fashion
           </span>
+          </div>
         </FlowbiteNavbar.Brand>
 
         <FlowbiteNavbar.Toggle aria-label="Toggle navigation" />

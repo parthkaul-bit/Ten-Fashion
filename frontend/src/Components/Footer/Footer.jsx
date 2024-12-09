@@ -6,11 +6,14 @@ function Footer() {
     <FlowbiteFooter container>
       <div className="w-full relative bottom-0">
         <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 gap-8">
-          <div className="flex justify-center sm:justify-start">
+          {/* <div className="flex justify-center sm:justify-start"> */}
+            <div className="flex items-center gap-2 lg:ml-4 md:ml-2 ml-0 ">
+            <img src="/TEN_LOGO.jpeg" className="h-11 w-11 rounded-full" />
             <span className="text-2xl sm:text-sm md:text-xl xl:text-3xl text-gray-900 dark:text-white">
-              *TEN Fashion logo*
+              TEN Fashion
             </span>
-          </div>
+            </div>
+          {/* </div> */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-8 sm:gap-6">
             <div>
               <FlowbiteFooter.Title title="Categories" />
