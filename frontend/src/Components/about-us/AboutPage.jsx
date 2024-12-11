@@ -3,7 +3,7 @@ import { FaClockRotateLeft } from "react-icons/fa6";
 import { FaEye } from "react-icons/fa";
 import { FaHands } from "react-icons/fa";
 import { FaHandshake } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function AboutPage() {
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ function AboutPage() {
             and a form of art. Our journey began with a simple yet profound idea
             — to bring the latest trends and timeless styles directly to your
             doorstep, creating a fashion destination that resonates with the
-            dynamic spirit of the UK.
+            dynamic spirit of the TEN Fashion.
           </p>
         </div>
         <div className="flex-1 mt-5 md:mt-0">
@@ -106,19 +106,21 @@ function AboutPage() {
             Parallax with another video
           </h1>
           <p className="text-lg mb-5">More eye-catching</p>
+          <Link to='/'>
           <button
             className="bg-blue-500 hover:bg-blue-600 text-white py-3 px-6 rounded-full text-lg font-semibold shadow-lg transition-transform transform hover:scale-105"
             onClick={handleShopNowClick}
-          >
+            >
             Shop Now
           </button>
+          </Link>
         </div>
       </div>
 
       {/* Features Section */}
       <div className="p-10 bg-gray-100 text-center dark:bg-slate-900">
         <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-10 dark:text-slate-200">
-          Aliquam viverra tellus a urna facilisis bibendum.
+          Our Services
         </h2>
         <div className="flex flex-wrap justify-center">
           {[
